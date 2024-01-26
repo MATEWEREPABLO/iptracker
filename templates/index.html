@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Scraping App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            padding: 20px;
+            margin-left: 250px; /* Adjust the margin to create space for the floating sidebar */
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+            overflow-x: hidden;
+            transition: 0.5s;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-icon {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .sidebar a {
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ddd;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #fff;
+            background-color: #555;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-container {
+            margin-top: 20px;
+        }
+
+        .logout-button {
+            display: center;
+            width: 20%;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 18px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #b5202f;
+        }
+
+        p#status {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* Add styles for the notification icon */
+        #notification-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="user-icon">&#x1F464;</div>
+        <ul>
+            <li>
+                <a href="{{ url_for('profile') }}">Profile</a>
+            </li>  
+            <li>
+                <a href="{{ url_for('price') }}">Price Notification</a>
+            </li>            
+            <li>
+                <a href="{{ url_for('settings') }}">Settings</a>
+            </li> 
+        </ul>
+    </div>
+
+    <div class="welcome-section">
+        <h1>Price Comparison AI With Web Scraping Expertise</h1>
+        <p>Your source for finding the best deals online.</p>
+    </div>
+
+    <div class="container">
+        <h1>Find the best deals Online</h1>
+        <div class="search-container">
+            <form id="search-form" method="GET" action="/show_data">
+                <input class="search-input" type="text" id="search-input" name="search" placeholder="Search for products">
+                <div class="search-icon" onclick="document.getElementById('search-form').submit();">&#128269;</div>
+            </form>
+        </div>
+        <div class="logout-container">
+            <form method="POST" action="/logout">
+                <button class="logout-button" type="submit">Log Out</button>
+            </form>
+        </div>
+        <p id="status"></p>
+    </div>
+
+    <div id="notification-icon">&#x1F514;</div>
+
+    <div class="ending section">
+        <p>David Matewere</p>
+    </div>
+
+    <script>
+        document.getElementById('get-prices-button').addEventListener('click', function () {
+            var button = this;
+            var loadingMessage = document.getElementById('loading-message');
+            loadingMessage.style.display = 'block';
+            button.textContent = 'Loading...';
+        });
+
+        document.getElementById('notification-icon').addEventListener('click', function () {
+            var notificationOptions = {
+                body: 'Prices have changed for your monitored products!',
+                icon: 'download.png',
+            };
+
+            if (Notification.permission === 'granted') {
+                new Notification('Price Change Alert', notificationOptions);
+            } else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === 'granted') {
+                        new Notification('Price Change Alert', notificationOptions);
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

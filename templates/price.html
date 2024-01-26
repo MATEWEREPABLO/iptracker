@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .product-list {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .product {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .product h2 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .price-change {
+            display: flex;
+            align-items: center;
+        }
+
+        .previous-price,
+        .current-price {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .arrow {
+            font-size: 24px;
+        }
+
+        .increase {
+            color: #dc3545;
+        }
+
+        .decrease {
+            color: #28a745;
+        }
+
+        .go-back {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .go-back a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="product-list">
+        <div class="product">
+            <h2>Samsung Galaxy A52</h2>
+            <div class="price-change">
+                <span class="previous-price">Mwk730,000</span>
+                <span class="arrow increase">&#9660;</span>
+                <span class="current-price">Mwk650,000</span>
+            </div>
+            <h2>4G Pocket Wifi</h2>
+            <div class="price-change">
+                <span class="previous-price">Mwk20,000</span>
+                <span class="arrow decrease">&#9650;</span>
+                <span class="current-price">Mwk23,000</span>
+            </div>
+            <h2>Iconic Malawi Store</h2>
+        </div>
+
+        <div class="product">
+            <h2>Samsung Galxy 21 refurbished</h2>
+            <div class="price-change">
+                <span class="previous-price">Mwk790,000</span>
+                <span class="arrow decrease">&#9650;</span>
+                <span class="current-price">Mwk800,000</span>
+            </div>
+            <h2>Wireless Keyboard and Mouse Combo</h2>
+            <div class="price-change">
+                <span class="previous-price">Mwk27,000</span>
+                <span class="arrow increase">&#9660;</span>
+                <span class="current-price">Mwk23,000</span>
+            </div>
+            <h2>Kikuu Online Store</h2>
+        </div>
+
+        <!-- Add more products as needed -->
+
+        <div class="go-back">
+            <a href="#" onclick="history.go(-1);">Go Back</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

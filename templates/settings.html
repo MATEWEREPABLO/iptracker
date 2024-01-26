@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .settings-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .settings-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .setting-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .setting-label {
+            font-size: 16px;
+            color: #555;
+            flex: 1;
+        }
+
+        .setting-input {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .save-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="settings-container">
+        <h1 class="settings-title">Account Settings</h1>
+
+        <div class="setting-option">
+            <label class="setting-label">Username:</label>
+            <input type="text" class="setting-input" placeholder="Enter your username">
+        </div>
+
+        <div class="setting-option">
+            <label class="setting-label">Email:</label>
+            <input type="email" class="setting-input" placeholder="Enter your email">
+        </div>
+
+        <div class="setting-option">
+            <label class="setting-label">Password:</label>
+            <input type="password" class="setting-input" placeholder="Enter your password">
+        </div>
+
+        <button class="save-button">Save Changes</button>
+    </div>
+
+</body>
+</html>

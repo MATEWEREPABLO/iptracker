@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scraped Data</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-size: cover;
+            background-blur: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            width: 48%;
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .favorite-icon {
+            width: 20px; /* Adjust the width as needed */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Best Deals</h1>
+
+        <div class="search-container">
+            <form method="GET" action="/show_data">
+                <input class="search-input" type="text" name="search" placeholder="Search for products">
+            </form>
+        </div>
+
+        
+        <div class="row">
+            <div class="column">
+                <h2>Kikuu Online Store</h2>
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Favorite</th> 
+                    </tr>
+                    {% for item in website1_data %}
+                    <tr>
+                        <td>
+                            <a href="{{ item['Product Link'] }}" target="_blank">{{ item['Product Name'] }}</a>
+                        </td>
+                        <td>{{ item['Product Price'] }}</td>
+                        <td>
+                            <img
+                                src="/static/heart-empty.png"
+                                alt="Add to favorites"
+                                onclick="addToFavorites('{{ item['Product Name'] }}', 'Kikuu')"
+                                class="favorite-icon"
+                            />
+                        </td>
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="column">
+                <h2>Iconic Malawi Online Store</h2>
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Favorite</th> 
+                    </tr>
+                    {% for item in website2_data %}
+                    <tr>
+                        <td>{{ item['Product Name'] }}</td>
+                        <td>{{ item['Product Price'] }}</td>
+                        <td>
+                            <img
+                                src="/static/heart-empty.png"
+                                alt="Add to favorites"
+                                onclick="addToFavorites('{{ item['Product Name'] }}', 'Iconic')"
+                                class="favorite-icon"
+                            />
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function addToFavorites(productName, storeName) {
+            var icon = event.target;
+    
+            // Toggle between the empty and filled heart icons
+            icon.src = icon.src.includes('heart-empty.png') ? '/static/heart-filled.png' : '/static/heart-empty.png';
+    
+            // Toggle the color directly
+            // icon.style.color = icon.style.color === 'red' ? 'black' : 'red';
+    
+            // Use AJAX to send the product name to the server
+            // You can modify the URL and data sent based on your server implementation
+            // Example using fetch API:
+            // fetch('/add_to_favorites', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({ productName: productName }),
+            // });
+        }
+    </script>
+    
+</body>
+</html>
